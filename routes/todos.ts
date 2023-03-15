@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { Todo } from '../models/todo'
 
-const todos: Array<Todo> = []
+let todos: Array<Todo> = []
 
 const router = Router()
 
@@ -30,6 +30,14 @@ router.put('/post/:postId', (req, res, next) => {
   }
 
   res.status(404).json({ message: 'Todo item not found' })
+})
+
+router.delete('/post/:postId', (req, res, next) => {
+  const tid = req.params.postId
+
+  todos = todos.filter(todoItem => todoItem.id !== tid)
+
+  res.status(200).json({ message: 'Deleted todo', todos })
 })
 
 export default router
