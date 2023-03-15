@@ -1,1 +1,0 @@
-# academind-node-typescript
