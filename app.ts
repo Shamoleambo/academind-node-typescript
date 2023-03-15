@@ -8,4 +8,6 @@ app.use(bodyParser.json())
 
 app.use(todosRoutes)
 
-app.listen(3000)
+app.listen(3000, () => {
+  console.log('App running on port 3000')
+})

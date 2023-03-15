@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/todo', (req, res, next) => {
   const todo: Todo = {
-    id: new Date().toLocaleString(),
+    id: new Date().toLocaleTimeString(),
     text: req.body.text
   }
 
@@ -26,7 +26,9 @@ router.put('/post/:postId', (req, res, next) => {
   const todoIndex = todos.findIndex(todoItem => todoItem.id === tid)
   if (todoIndex >= 0) {
     todos[todoIndex] = { id: todos[todoIndex].id, text }
-    return res.status(200).json({ message: 'Todo edited' })
+    return res
+      .status(200)
+      .json({ message: 'Todo edited', todo: todos[todoIndex], todos })
   }
 
   res.status(404).json({ message: 'Todo item not found' })
